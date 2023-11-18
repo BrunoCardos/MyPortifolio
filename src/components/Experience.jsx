@@ -7,6 +7,8 @@ import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
+import { experiencesData } from "../constants";
+
 const ExperienceCard = ({ experience }) => (
   <VerticalTimelineElement
     contentStyle={{ background: "#1d1836", color: "#fff" }}
@@ -48,11 +50,32 @@ const Experience = () => {
       </motion.div>
 
       <div className="mt-20 flex flex-col">
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard key={index} experience={experience} />
-          ))}
-        </VerticalTimeline>
+      <VerticalTimeline>
+                {experiencesData.map((experience, index) => (
+                    <VerticalTimelineElement
+                        key={index}
+                        contentStyle={{ 
+                            background: "#1d1836", 
+                            color: "#fff" ,
+                            boxShadow: "none",
+                            border: "none",
+                            textAlign: "left",
+                            padding: "1.3rem 2rem"
+                        }}
+                        contentArrowStyle={{ borderRight: "7px solid #232631" }}
+                        date={experience.date}
+                        icon={experience.icon}
+                        iconStyle={{
+                            background: "#1d1836",
+                            fontSize: "1.5rem",
+                        }}
+                    >
+                        <h3 className='font-semibold capitalize'>{experience.title}</h3>
+                        <p className='!font-normal !mt-0 !text-gray-500'>{experience.location}</p>
+                        <p className='!mt-1 !font-normal'>{experience.description}</p>
+                    </VerticalTimelineElement>
+                ))}
+            </VerticalTimeline>
       </div>
     </>
   )
